@@ -6,7 +6,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
    <meta name="description" content="Bootstrap Admin App + jQuery">
    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
-   <title>Bienvenido</title>
+   <title>Angle - Bootstrap Admin Template</title>
    <!-- =============== VENDOR STYLES ===============-->
    <!-- FONT AWESOME-->
    <link rel="stylesheet" href="../vendor/fontawesome/css/font-awesome.min.css">
@@ -17,8 +17,6 @@
    <!-- WHIRL (spinners)-->
    <link rel="stylesheet" href="../vendor/whirl/dist/whirl.css">
    <!-- =============== PAGE VENDOR STYLES ===============-->
-   <!-- WEATHER ICONS-->
-   <link rel="stylesheet" href="../vendor/weather-icons/css/weather-icons.min.css">
    <!-- =============== BOOTSTRAP STYLES ===============-->
    <link rel="stylesheet" href="css/bootstrap.css" id="bscss">
    <!-- =============== APP STYLES ===============-->
@@ -30,21 +28,50 @@
       <?php
          require_once '../Dao/VistaDao.php';
          $vistadao = new VistaDao();
-         $vistadao->set_vista("inicio");
+         $vistadao->set_vista("gest_curso");
          include 'navbar.php';
       ?>
       <!-- Main section-->
-      
-
       <section>
          <!-- Page content-->
          <div class="content-wrapper">
-            <h3>Bienvenido</h3>
-         </div>
-         <div class="panel panel-default">
-            <center>
-               <img src="img/welcome.jpg" width="auto" height="auto">
-            </center>
+            <h3><?php echo 'Gestionar Curso'; ?> </h3>
+            <!-- START row-->
+            <div class="row">
+               <div class="col-md-12">
+                  <form method="post" action="../Controlador/Curso.php?action=gestionar" data-parsley-validate="" novalidate="">
+                     <!-- START panel-->
+                     <div class="panel panel-default">
+                        <div class="panel-heading">
+                           <div class="panel-title"><?php echo 'Gestionar Curso'; ?></div>
+                        </div>
+                        <div class="panel-body">
+                           <div class="form-group">
+                              <label class="control-label">Código *</label>
+                              <input class="form-control" type="text" name="codigo" required>
+                           </div>
+                           <div class="form-group">
+                              <label class="control-label">Nombre *</label>
+                              <input class="form-control" type="text" name="nombre" required>
+                           </div>
+                           <div class="required">* Campos obligatorios</div>
+                        </div>
+                        <div class="panel-footer">
+                           <div class="clearfix">
+                              <div class="pull-left">
+                                 <button class="btn btn-danger" onclick="location.href='../app/curso.php'">Cancelar</button>
+                              </div>
+                              <div class="pull-right">
+                                 <button class="btn btn-success" type="submit"><?php echo 'Gestionar'; ?></button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- END panel-->
+                  </form>
+               </div>
+            </div>
+            <!-- END row-->
          </div>
       </section>
 
@@ -77,22 +104,8 @@
    <!-- RTL demo-->
    <script src="js/demo/demo-rtl.js"></script>
    <!-- =============== PAGE VENDOR SCRIPTS ===============-->
-   <!-- SPARKLINE-->
-   <script src="../vendor/sparkline/index.js"></script>
-   <!-- FLOT CHART-->
-   <script src="../vendor/flot/jquery.flot.js"></script>
-   <script src="../vendor/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-   <script src="../vendor/flot/jquery.flot.resize.js"></script>
-   <script src="../vendor/flot/jquery.flot.pie.js"></script>
-   <script src="../vendor/flot/jquery.flot.time.js"></script>
-   <script src="../vendor/flot/jquery.flot.categories.js"></script>
-   <script src="../vendor/flot-spline/js/jquery.flot.spline.min.js"></script>
-   <!-- EASY PIE CHART-->
-   <script src="../vendor/jquery.easy-pie-chart/dist/jquery.easypiechart.js"></script>
-   <!-- MOMENT JS-->
-   <script src="../vendor/moment/min/moment-with-locales.min.js"></script>
-   <!-- DEMO-->
-   <script src="js/demo/demo-flot.js"></script>
+   <!-- PARSLEY-->
+   <script src="../vendor/parsleyjs/dist/parsley.min.js"></script>
    <!-- =============== APP SCRIPTS ===============-->
    <script src="js/app.js"></script>
 </body>

@@ -95,9 +95,10 @@
                   else
                      echo '<li class=" ">';
                   ?>
-                     <a href="#gestcurso" title="Gestionar Curso" data-toggle="collapse" onclick="location.href='../Controlador/Curso.php'">
+                     <!--<a href="#gestcurso" title="Gestionar Curso" data-toggle="collapse" onclick="location.href='../Controlador/Curso.php'">-->
+                        <a href="#gestcurso" title="Gestionar Curso" data-toggle="collapse" onclick="location.href='../app/curso.php'">
                         <em class="icon-notebook"></em>
-                        <span data-localize="sidebar.nav.GESTCURSO">Nueva Encuesta</span>
+                        <span data-localize="sidebar.nav.GESTCURSO">Gestionar Curso</span>
                      </a>
                   </li>
 

@@ -6,7 +6,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
    <meta name="description" content="Bootstrap Admin App + jQuery">
    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
-   <title>Bienvenido</title>
+   <title>Gestionar Curso</title>
    <!-- =============== VENDOR STYLES ===============-->
    <!-- FONT AWESOME-->
    <link rel="stylesheet" href="../vendor/fontawesome/css/font-awesome.min.css">
@@ -19,6 +19,8 @@
    <!-- =============== PAGE VENDOR STYLES ===============-->
    <!-- WEATHER ICONS-->
    <link rel="stylesheet" href="../vendor/weather-icons/css/weather-icons.min.css">
+   <!-- SWEET ALERT-->
+   <link rel="stylesheet" href="../vendor/sweetalert/dist/sweetalert.css">
    <!-- =============== BOOTSTRAP STYLES ===============-->
    <link rel="stylesheet" href="css/bootstrap.css" id="bscss">
    <!-- =============== APP STYLES ===============-->
@@ -30,23 +32,80 @@
       <?php
          require_once '../Dao/VistaDao.php';
          $vistadao = new VistaDao();
-         $vistadao->set_vista("inicio");
+         $vistadao->set_vista("gest_curso");
          include 'navbar.php';
       ?>
       <!-- Main section-->
-      
 
       <section>
          <!-- Page content-->
          <div class="content-wrapper">
-            <h3>Bienvenido</h3>
+            <h3>Gestionar Curso</h3>
          </div>
          <div class="panel panel-default">
-            <center>
-               <img src="img/welcome.jpg" width="auto" height="auto">
-            </center>
+            <div class="panel-heading">Gestion de Cursos
+               <small></small>
+            </div>
+            <div class="panel-body">
+               <button class="mb-sm btn btn-success" onclick="location.href='../app/gestcurso.php'">Agregar Curso</button>
+
+               <div class="table-responsive">
+                  <table class="table table-striped table-hover" id="datatable1">
+                     <thead>
+                        <tr>
+                           <th class="sort-alpha">Codigo del Curso</th>
+                           <th>Nombre del Curso</th>
+                           <th>Opciones</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>TEL101</td>
+                           <td>Redes de computación</td>
+                           <td><button class="mb-sm btn btn-info" onclick="location.href='../app/gestcurso.php?action=mod&idcurso=1'"><i class="icon-pencil"></i></button>
+                              <button class="mb-sm btn btn-danger" onclick="swalEliminarCurso('Redes de computación')"><i class="icon-trash"></i></button></td>
+                           </tr>
+                           <tr>
+                              <td>TEL250</td>
+                              <td>Campos Electromagneticos</td>
+                              <td><button class="mb-sm btn btn-info" onclick="location.href='../app/gestcurso.php?action=mod&idcurso=2'"><i class="icon-pencil"></i></button>
+                              <button class="mb-sm btn btn-danger" onclick="swalEliminarCurso('Campos Electromagneticos')"><i class="icon-trash"></i></button></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+
+            </div>
          </div>
       </section>
+
+      <script type="text/javascript">
+         function swalEliminarCurso(nombre_curso) {
+            swal({
+               title: "Eliminar Curso", 
+               text: "¿Desea eliminar el curso \"" + nombre_curso + "\"?", 
+               type: "warning",
+               showCancelButton : true,
+               confirmButtonColor : "#DD6B55",
+               confirmButtonText : "Eliminar",
+               cancelButtonText : "Cancelar",
+               closeOnConfirm : false,
+               closeOnCancel : false
+            }, function (isConfirm) {
+               if (isConfirm) {
+                  swal({
+                     title : "¡Eliminado!",
+                     text : "Se elimino el curso exitosamente",
+                     type : "success"
+                  }, function(isConfirm) {
+                     location.reload();
+                  });
+               } else {
+                  swal("Cancelado", "Se cancelo la eliminación del curso", "error");
+               }
+            });
+         }
+      </script>
 
       <!-- Page footer-->
       <footer>
@@ -93,6 +152,8 @@
    <script src="../vendor/moment/min/moment-with-locales.min.js"></script>
    <!-- DEMO-->
    <script src="js/demo/demo-flot.js"></script>
+   <!-- SWEET ALERT-->
+   <script src="../vendor/sweetalert/dist/sweetalert.min.js"></script>
    <!-- =============== APP SCRIPTS ===============-->
    <script src="js/app.js"></script>
 </body>
